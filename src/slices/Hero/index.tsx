@@ -3,7 +3,8 @@
 import Bounded from "@/components/Bounded";
 import { Content, KeyTextField } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import gsap, { random } from "gsap";
+import { gsap } from "gsap";
+import Shapes from "./Shapes";
 
 import { useEffect, useRef } from "react";
 
@@ -61,7 +62,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         }
       );
     }, component);
-    return () => ctx.revert();
+    return () => ctx.revert();    // cleanup
   }, []);
 
   //? Function to split the letters of Name into span
@@ -85,9 +86,10 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       ref={component}
     >
       <div className="grid min-h-[70vh] grid-cols-1 md:grid-cols-2 items-center">
-        <div className="col-start-1 md:row-start-1">
+        <Shapes />
+        <div className="col-start-1 md:row-start-1" data-speed=".2">
           <h1
-            className="mb-8 text-[clamp(3rem,18vmin,20rem)] font-extrabold leading-none tracking-tighter"
+            className="mb-8 text-[clamp(3rem,12vmin,18rem)] font-extrabold leading-none tracking-tighter"
             aria-label={
               slice.primary.first_name + " " + slice.primary.last_name
             }
